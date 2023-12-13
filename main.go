@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 
 	_ "modernc.org/sqlite"
@@ -19,14 +18,24 @@ func (s Sale) String() string {
 	return fmt.Sprintf("Product: %d Volume: %d Date:%s", s.Product, s.Volume, s.Date)
 }
 
-func main() {
-	db, err := sql.Open("sqlite", "demo.db")
-	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
-
-	client := 208
+func selectSales(client int) ([]Sale, error) {
+	var sales []Sale
 
 	// напишите код здесь
+
+	return sales, nil
+}
+
+func main() {
+	client := 208
+
+	sales, err := selectSales(client)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	for _, sale := range sales {
+		fmt.Println(sale)
+	}
 }
